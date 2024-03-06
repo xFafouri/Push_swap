@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:31:08 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/02/15 09:59:49 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/06 02:07:14 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,16 +90,4 @@ char	**ft_split(char *str,char *sep)
 	s[i] = NULL;
 	return(s);
 }
-#include <stdio.h>
-int main()
-{
-    char *str = "hamza fafouri,test!";
-    char *sep = " !,";
-    char **result = ft_split(str, sep);
-    
-    for (int i = 0; result[i] != NULL; i++)
-    {
-        printf("%s\n", result[i]);
-    }
-    return 0;
-}
+

@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 01:52:34 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/03 01:16:56 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/06 19:10:40 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,21 @@ typedef	struct s_list
 	struct s_list	*next;
 } t_list;
 
+typedef	struct s_data
+{
+	long arg;
+	char **split_arg;
+	int node;
+	int target;
+	int above_node;
+	int above_target;
+}t_data;
 
-char	**ft_split(char *str,char *sep);
+char	**ft_split(char *s, char c);
 t_list	*ft_lstnew(int nb);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lst_add_back(t_list **lst, t_list *new);
-size_t	ft_strlen(const char *s);
+int	ft_strlen(const char *s);
 int		ft_atoi(const char *s);
 int		ft_lstsize(t_list *lst);
 void 	ra(t_list **stack_a);

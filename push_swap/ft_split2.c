@@ -6,21 +6,12 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 20:52:04 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/06 00:28:08 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/06 19:12:08 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-size_t ft_strlen(const char *s)
-{
-	size_t i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return(i);
-}
 char	*ft_strdup(const char *s)
 {
 	int	i;
@@ -39,10 +30,10 @@ char	*ft_strdup(const char *s)
 	return (cpy);
 	
 }
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, int start, int len)
 {
 	char		*sub;
-	size_t		i;
+	int		i;
 
 	if (s == NULL)
 		return (NULL);
@@ -78,15 +69,15 @@ int		count_words(char *s, char c)
 	}
 	return (i);
 }
-// char	**ft_free(char **s, int n)
-// {
-// 	while (n > 0)
-// 	{
-// 		free(s[n--]);
-// 	}
-// 	free(s);
-// 	return (0);
-// }
+char	**ft_free(char **s, int n)
+{
+	while (n > 0)
+	{
+		free(s[n--]);
+	}
+	free(s);
+	return (0);
+}
 static char	**ft_help(char **tab, const char *s, char c)
 {
 	int	i;
@@ -105,8 +96,8 @@ static char	**ft_help(char **tab, const char *s, char c)
 		while (s[i] != '\0' && s[i] != c && j++ >= 0)
 			i++;
 		tab[n++] = ft_substr(s, i - j, j);
-		// if (!tab[n - 1])
-		// 	return (ft_free(tab, n));
+		if (!tab[n - 1])
+			return (ft_free(tab, n));
 	}
 	tab[n] = NULL;
 	return (tab);

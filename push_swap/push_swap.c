@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:28:38 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/06 01:00:46 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/06 20:34:43 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -454,12 +454,96 @@ void	sort_two(t_list **stack_a)
 // 	}
 // 	return(0);
 // }
+int	ft_strlen(const char *s)
+{
+	int i = 0;
+	while(s[i])
+		i++;
+	return(i);
+}
+char	*ft_strjoin(char *s1, char *s2)
+{
+	size_t	i;
+	size_t	j;
+	char	*str;
+
+	i = -1;
+	j = 0;
+	if (!s1)
+	{
+		s1 = (char *)malloc(sizeof(char) * 1);
+		s1[0] = '\0';
+	}
+	if (!s1 || !s2)
+		return (NULL);
+	str = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!str)
+		return (NULL);
+	while (s1[++i])
+		str[i] = s1[i];
+	while (s2[j])
+		str[i++] = s2[j++];
+	str[i] = '\0';
+	return (str);
+}
+
+int	ft_strcmp(char *s1, char *s2)
+{
+	size_t	i;
+
+	i = 0;
+	while (s1[i] == s2[i] && s1[i] && s2[i])
+		i++;
+	return ((unsigned char) s1[i] - (unsigned char) s2[i]);
+}
+
+// void	ac_2(t_data *data, char *av)
+// {
+// 	int j;
+
+// 	j = 0;
+// 	if (ft_strcmp(av[i], "") == 0)
+// 	{
+// 		printf("Error\n");
+// 		exit(1);
+// 	}
+// 	data->split_arg = ft_split(data->av[i], " +");
+
+// 	while (data->split_arg[j])
+// 	{
+// 		data->arg = ft_atoi(data->split_arg[j]);
+// 		if (data->arg == 0 && data->split_arg[j][0] != '0')
+// 		{
+// 				printf("Error\n");
+// 				exit(1);
+// 		}
+// 		data->ar = ft_lstnew(data->arg);
+// 		ft_lst_add_back(&stack_a, data->ar);
+// 		j++;
+// 	}
+// }
+// void ac_not_2(t_data *data, char *av, t_list *ar)
+// {
+// 		data->arg = ft_atoi(av[i]);
+// 		if (data->arg == 0 && av[i][0] != '0')
+// 		{
+// 			printf("Error\n");
+// 			exit(1);
+// 		}
+// 		ar = ft_lstnew(data->arg);
+// 		ft_lst_add_back(&stack_a, ar);
+// }
+// void spliting_ac(t_list *data,char *av)
+// {
+	
+// }
 int main (int ac, char **av)
 {
 	t_list	*stack_a = NULL;
 	t_list	*stack_b = NULL;
 	t_list *ar;
-	long i;
+	// t_data data;
+	int i;
 	int j;
 	long arg;
 	char **split_arg;
@@ -467,59 +551,35 @@ int main (int ac, char **av)
 	int target = 0;
 	int above_node = 0;
 	int above_target = 0;
-	
+
 	i = 1;
 	if (ac == 1)
-	{
-		system("leaks push_swap");
 		exit(0);
-	}
-
 	while (i < ac)
 	{
+		spliting_ac(data, av[i]);
+    	split_arg = ft_split(av[i], ' ');
+   		j = 0;
 		if (ft_strchr(av[i], '.') || ft_strchr(av[i], ','))
 		{
 			printf("Error\n");
 			exit(1);
 		}
-		if (ac == 2)
-		{
-			j = 0;
-			// printf("split_arg %s\n", av[i]);
-			if (strcmp(av[i], "") == 0)
+   		while (split_arg[j])
+    	{
+			arg = ft_atoi(split_arg[j]);
+			if (arg == 0 && split_arg[j][0] != '0')
 			{
 				printf("Error\n");
 				exit(1);
 			}
-			split_arg = ft_split(av[i], " +");
 
-			while (split_arg[j])
-			{
-				arg = ft_atoi(split_arg[j]);
-				if (arg == 0 && split_arg[j][0] != '0')
-				{
-						printf("Error\n");
-						exit(1);
-				}
-				ar = ft_lstnew(arg);
-				ft_lst_add_back(&stack_a, ar);
-				j++;
-			}
-			break ;
-		}
-		arg = ft_atoi(av[i]);
-		// printf("arg = %ld\n", arg);
-		// printf("av = %c\n",av[i][0]);
-		if (arg == 0 && av[i][0] != '0')
-		{
-			printf("Error\n");
-			exit(1);
-		}
-		ar = ft_lstnew(arg);
-		ft_lst_add_back(&stack_a, ar);
-		i++;
+			ar = ft_lstnew(arg);
+			ft_lst_add_back(&stack_a, ar);
+			j++;
+   		 }
+   		i++;
 	}
-	
 	if (check_double(&stack_a))
 	{
 		printf("Error\n");
@@ -527,7 +587,6 @@ int main (int ac, char **av)
 	}
 	if (check_if_sorted(&stack_a))
 	{
-		system("leaks push_swap");
 		exit(0);
 	}
 	if (ft_lstsize(stack_a) == 2)
@@ -633,7 +692,4 @@ int main (int ac, char **av)
 		}
 		check_min(&stack_a);
 	}
-	// while(1);
-	system("leaks push_swap");
-	// ft_write(stack_a, stack_b);
 }

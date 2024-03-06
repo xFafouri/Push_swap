@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 02:03:50 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/05 23:44:07 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/06 16:03:25 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,16 @@ int	ft_atoi(const char *s)
 		}
 		i++;
 	}
-	// while(s[i])
-	// {
-	// 	if ((s[i] >= 'a' && s[i] <= 'z') || (s[i] >= 'A' && s[i] <= 'Z'))
-	// 	{
-	// 		printf("Error\n");
-	// 		exit(1);
-	// 	}
-	// 	i++;
-	// }
+	i = 0;
+	while(s[i])
+	{
+		if ((s[i] >= 'a' && s[i] <= 'z') || (s[i] >= 'A' && s[i] <= 'Z'))
+		{
+			printf("Error\n");
+			exit(1);
+		}
+		i++;
+	}
 	i = 0;
 	while (s[i] >= '\t' && s[i] <= '\r' && s[i] != ' ')
 		i++;
