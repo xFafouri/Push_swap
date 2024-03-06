@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   ft_split2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 20:52:04 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/02/09 03:18:33 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/06 00:28:08 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,15 @@ int		count_words(char *s, char c)
 	}
 	return (i);
 }
-char	**ft_free(char **s, int n)
-{
-	while (n > 0)
-	{
-		free(s[n--]);
-	}
-	free(s);
-	return (0);
-}
+// char	**ft_free(char **s, int n)
+// {
+// 	while (n > 0)
+// 	{
+// 		free(s[n--]);
+// 	}
+// 	free(s);
+// 	return (0);
+// }
 static char	**ft_help(char **tab, const char *s, char c)
 {
 	int	i;
@@ -105,8 +105,8 @@ static char	**ft_help(char **tab, const char *s, char c)
 		while (s[i] != '\0' && s[i] != c && j++ >= 0)
 			i++;
 		tab[n++] = ft_substr(s, i - j, j);
-		if (!tab[n - 1])
-			return (ft_free(tab, n));
+		// if (!tab[n - 1])
+		// 	return (ft_free(tab, n));
 	}
 	tab[n] = NULL;
 	return (tab);

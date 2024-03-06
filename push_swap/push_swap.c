@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:28:38 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/05 17:10:47 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/06 01:00:46 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -418,43 +418,88 @@ int check_if_sorted(t_list **stack_a)
 		return (1);
 	return(0);
 }
+int check_double(t_list **stack_a)
+{
+	int nb = 0;
+    t_list *current = *stack_a;
+    while(current != NULL)
+    {
+        nb = current->nbr;
+        t_list *after = current;
+        while(after->next != NULL)
+        {
+            if (after->next->nbr == nb)
+            {
+				return(1);
+            }
+            after = after->next;
+        }
+        current = current->next;
+    }
+	return (0);
+}
+
+
 void	sort_two(t_list **stack_a)
 {
 	t_list *current = (*stack_a);
 	if (current->nbr > current->next->nbr)
 		sa(stack_a);
 }
+// int is_number(const char s)
+// {
+// 	if (s >= '0' && s <= '9')
+// 	{
+// 		return (1);
+// 	}
+// 	return(0);
+// }
 int main (int ac, char **av)
 {
 	t_list	*stack_a = NULL;
 	t_list	*stack_b = NULL;
-	
 	t_list *ar;
-	int i;
+	long i;
 	int j;
-	int arg;
+	long arg;
 	char **split_arg;
+	int node = 0;
+	int target = 0;
+	int above_node = 0;
+	int above_target = 0;
 	
 	i = 1;
+	if (ac == 1)
+	{
+		system("leaks push_swap");
+		exit(0);
+	}
 
 	while (i < ac)
 	{
-		if (strchr(av[i], '.') || strchr(av[i], ','))
+		if (ft_strchr(av[i], '.') || ft_strchr(av[i], ','))
 		{
-			printf("ERROR\n");
-			return (0);
+			printf("Error\n");
+			exit(1);
 		}
 		if (ac == 2)
 		{
-			j = 0; 
+			j = 0;
+			// printf("split_arg %s\n", av[i]);
+			if (strcmp(av[i], "") == 0)
+			{
+				printf("Error\n");
+				exit(1);
+			}
 			split_arg = ft_split(av[i], " +");
+
 			while (split_arg[j])
 			{
 				arg = ft_atoi(split_arg[j]);
 				if (arg == 0 && split_arg[j][0] != '0')
 				{
 						printf("Error\n");
-						return (0);
+						exit(1);
 				}
 				ar = ft_lstnew(arg);
 				ft_lst_add_back(&stack_a, ar);
@@ -463,17 +508,28 @@ int main (int ac, char **av)
 			break ;
 		}
 		arg = ft_atoi(av[i]);
+		// printf("arg = %ld\n", arg);
+		// printf("av = %c\n",av[i][0]);
 		if (arg == 0 && av[i][0] != '0')
 		{
 			printf("Error\n");
-			return (0);
+			exit(1);
 		}
 		ar = ft_lstnew(arg);
 		ft_lst_add_back(&stack_a, ar);
 		i++;
 	}
+	
+	if (check_double(&stack_a))
+	{
+		printf("Error\n");
+		exit(1);
+	}
 	if (check_if_sorted(&stack_a))
+	{
+		system("leaks push_swap");
 		exit(0);
+	}
 	if (ft_lstsize(stack_a) == 2)
 		sort_two(&stack_a);
 	if (ft_lstsize(stack_a) == 3)
@@ -484,10 +540,10 @@ int main (int ac, char **av)
 		pb(&stack_a, &stack_b);
 		while(ft_lstsize(stack_a) > 3)
 		{
-			int node = 0;
-			int target = target_of_a(&stack_a, &stack_b, &node);
-			int above_node = check_above1(stack_a, node);
-			int above_target = check_above1(stack_b, target);
+			node = 0;
+			target = target_of_a(&stack_a, &stack_b, &node);
+			above_node = check_above1(stack_a, node);
+			above_target = check_above1(stack_b, target);
 			if (above_node && above_target)
 			{
 				while(stack_a->nbr != node && stack_b->nbr != target)
@@ -525,19 +581,14 @@ int main (int ac, char **av)
 					rrb(&stack_b);
 			}
 			pb(&stack_a, &stack_b);
-			// ft_write(stack_a, stack_b);
-			// 	printf("\n");
 		}
-		// sort_three(&stack_a);
-		// ft_write(stack_a, stack_b);
-		// check_min(&stack_a);
 		sort_three(&stack_a);
 		while(ft_lstsize(stack_b) > 0)
 		{
-			int node = 0;
-			int target = target_of_b(&stack_b, &stack_a, &node);
-			int above_node = check_above1(stack_b, node);
-			int above_target = check_above1(stack_a, target);
+			node = 0;
+			target = target_of_b(&stack_b, &stack_a, &node);
+			above_node = check_above1(stack_b, node);
+			above_target = check_above1(stack_a, target);
 			if (above_node && above_target)
 			{
 				while(stack_a->nbr != target && stack_b->nbr != node)
@@ -580,10 +631,9 @@ int main (int ac, char **av)
 			}
 			pa(&stack_a, &stack_b);
 		}
-		// ft_write(stack_a, stack_b);
-		// printf("\n");
 		check_min(&stack_a);
 	}
-		// system("leaks push_swap");
-	ft_write(stack_a, stack_b);
+	// while(1);
+	system("leaks push_swap");
+	// ft_write(stack_a, stack_b);
 }
