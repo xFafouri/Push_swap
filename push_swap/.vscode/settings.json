@@ -3,6 +3,9 @@
 	"files.associations": {
 		"stdio.h": "c",
 		"push_swap.h": "c",
-		"random": "c"
+		"random": "c",
+		"__functional_03": "c",
+		"functional": "c",
+		"__node_handle": "c"
 	}
 }

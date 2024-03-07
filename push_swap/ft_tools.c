@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 02:03:50 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/06 16:03:25 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/07 02:57:35 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,11 @@ void	ft_lst_add_back(t_list **lst, t_list *new)
 	last->next = new;
 }
 
+void error_exit()
+{
+	printf("Error\n");
+	exit(1);
+}
 
 int	ft_atoi(const char *s)
 {
@@ -60,21 +65,15 @@ int	ft_atoi(const char *s)
 	
 	while(s[i])
 	{
-		if ((s[i] == '-' || s[i] == '+' ) && !(s[i + 1] >= '0' && s[i + 1] <= '9'))
-		{
-			printf("Error\n");
-			exit(1);
-		}
+		if ((s[i] == '-' || s[i] == '+' ) && !(s[i + 1] >= 48 && s[i + 1] <= 57))
+			error_exit();
 		i++;
 	}
 	i = 0;
 	while(s[i])
 	{
 		if ((s[i] >= 'a' && s[i] <= 'z') || (s[i] >= 'A' && s[i] <= 'Z'))
-		{
-			printf("Error\n");
-			exit(1);
-		}
+			error_exit();
 		i++;
 	}
 	i = 0;
@@ -82,6 +81,8 @@ int	ft_atoi(const char *s)
 		i++;
 	if (s[i] == '+' || s[i] == '-')
 	{
+		if (s[i - 1] >= '0' && s[i - 1] <= '9')
+			error_exit();
 		if (s[i] == '-')
 			sign *= -1;
 		i++;
@@ -90,12 +91,11 @@ int	ft_atoi(const char *s)
 	{
 		r = r * 10 + (s[i] - '0');
 		if ((r * sign) > 2147483647 || (r * sign) < -2147483648)
-		{
-			printf("Error\n");
-			exit(1);	
-		}
+			error_exit();
 		i++;
 	}
+	if (s[i] != '\0')
+		return(0);
 	return (r * sign);
 }
 

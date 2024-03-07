@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 01:52:34 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/06 19:10:40 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/07 02:58:45 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ typedef	struct s_data
 	int target;
 	int above_node;
 	int above_target;
-}t_data;
+} t_data;
 
 char	**ft_split(char *s, char c);
 t_list	*ft_lstnew(int nb);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lst_add_back(t_list **lst, t_list *new);
-int	ft_strlen(const char *s);
+int		ft_strlen(const char *s);
 int		ft_atoi(const char *s);
 int		ft_lstsize(t_list *lst);
 void 	ra(t_list **stack_a);
@@ -55,6 +55,7 @@ void	rrr(t_list **stack_a, t_list **stack_b);
 void	rra(t_list **stack_a);
 void	reverse_rotate(t_list **stack);
 void 	rotate(t_list **stack);
+void 	error_exit();
 
 
 #endif
