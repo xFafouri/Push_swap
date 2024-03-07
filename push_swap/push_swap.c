@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:28:38 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/07 02:59:06 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/07 19:04:28 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -544,11 +544,17 @@ int ft_isdigit(int c)
 	return(0);
 }
 
-void spliting_ac(t_data *data,char **split_arg, t_list *ar, t_list **stack_a)
+void spliting_ac(t_data *data,char **split_arg, t_list *ar, t_list **stack_a, char *av)
 {
 	int j;
+	int i;
 	
+	i = 0;
 	j = 0;
+	if (ft_strcmp(&av[i],"") == 0)
+		error_exit();
+	if (ft_strchr(&av[i], '.') || ft_strchr(&av[i], ',') || ft_strchr(&av[i], '\t'))
+		error_exit();
 	while (split_arg[j])
 	{
 		data->arg = ft_atoi(split_arg[j]);
@@ -563,32 +569,147 @@ void spliting_ac(t_data *data,char **split_arg, t_list *ar, t_list **stack_a)
 		j++;
 	}
 }
-int main (int ac, char **av)
+void	turk_sort_a(t_list **stack_a, t_list **stack_b, t_data *data)
+{
+		while(ft_lstsize(*stack_a) > 3)
+		{
+			data->node = 0;
+			data->target = target_of_a(stack_a, stack_b, &data->node);
+			data->above_node = check_above1(*stack_a, data->node);
+			data->above_target = check_above1(*stack_b, data->target);
+			if (data->above_node && data->above_target)
+			{
+				while((*stack_a)->nbr != data->node && (*stack_b)->nbr != data->target)
+				{
+					rr(stack_a, stack_b);
+				}
+			}
+			else if (!data->above_node && !data->above_target)
+			{
+				while((*stack_a)->nbr != data->node && (*stack_b)->nbr != data->target)
+				{
+					rrr(stack_a, stack_b);
+				}
+			}
+			if (data->above_node)
+			{
+				while((*stack_a)->nbr != data->node)
+					ra(stack_a);
+				
+			}
+			else
+			{
+				while((*stack_a)->nbr != data->node)
+					rra(stack_a);
+			}
+			if (data->above_target)
+			{
+				while((*stack_b)->nbr != data->target)
+					rb(stack_b);
+				
+			}
+			else
+			{
+				while((*stack_b)->nbr != data->target)
+					rrb(stack_b);
+			}
+			pb(stack_a, stack_b);
+		}
+}
+
+void turk_sort_b(t_list **stack_a, t_list **stack_b, t_data *data)
+{
+		while(ft_lstsize(*stack_b) > 0)
+		{
+			data->node = 0;
+			data->target = target_of_b(stack_b, stack_a, &data->node);
+			data->above_node = check_above1(*stack_b, data->node);
+			data->above_target = check_above1(*stack_a, data->target);
+			if (data->above_node && data->above_target)
+			{
+				while((*stack_a)->nbr != data->target && (*stack_b)->nbr != data->node)
+				{
+					rr(stack_a, stack_b);
+				}
+			}
+			else if(!data->above_node && !data->above_target)
+			{
+				while((*stack_b)->nbr != data->node && (*stack_a)->nbr != data->target)
+					rrr(stack_a, stack_b);
+			}
+			if (data->above_node)
+			{
+				while((*stack_b)->nbr != data->node)
+					rb(stack_b);
+				
+			}
+			else
+			{
+				while((*stack_b)->nbr != data->node)
+					rrb(stack_b);
+			}
+			if (data->above_target)
+			{
+				while((*stack_a)->nbr != data->target)
+				{
+					ra(stack_a);
+				}
+			}
+			else
+			{
+				while((*stack_a)->nbr != data->target)
+					rra(stack_a);
+			}
+			pa(stack_a, stack_b);
+		}
+}
+ #include <ctype.h>
+ 
+
+int is_spaces(char *str)
+{
+	int i = 0;
+    while (str[i])
+    {
+        if (str[i] != ' ')
+			return 1;
+        i++;
+    }
+    return (0);
+}
+
+int main(int ac, char **av)
 {
 	t_list	*stack_a = NULL;
 	t_list	*stack_b = NULL;
-	t_list *ar= NULL;
-
+	t_list *ar = NULL;
 	t_data data;
 	int i;
+
 	char **split_arg;
 	data.node = 0;
 	data.target = 0;
 	data.above_node = 0;
 	data.above_target = 0;
 
-
 	i = 1;
 	if (ac == 1)
 		exit(0);
+	while (!is_spaces(av[i]))
+    {
+        printf("Error\n");
+        exit(1);
+    }
+	i = 1;
 	while (i < ac)
 	{
+		// if (is_spaces(av[i]))
+        // {
+        //     printf("Error\n");
+        //     exit(1);
+        // }
     	split_arg = ft_split(av[i], ' ');
-		if (ft_strcmp(av[i],"") == 0)
-			error_exit();
-		if (ft_strchr(av[i], '.') || ft_strchr(av[i], ',') || ft_strchr(av[i], '\t'))
-			error_exit();
-		spliting_ac(&data, split_arg, ar, &stack_a);
+		spliting_ac(&data, split_arg, ar, &stack_a, av[i]);
    		i++;
 	}
 	if (check_double(&stack_a))
@@ -596,106 +717,23 @@ int main (int ac, char **av)
 	if (check_if_sorted(&stack_a))
 		exit(0);
 	if (ft_lstsize(stack_a) == 2)
-		error_exit();
+	{
+		sort_two(&stack_a);
+		exit(0);
+	}
 	if (ft_lstsize(stack_a) == 3)
+	{
 		sort_three(&stack_a);
+		// system("leaks push_swap");
+		exit(0);
+	}
 	else
 	{
 		pb(&stack_a, &stack_b);
 		pb(&stack_a, &stack_b);
-		while(ft_lstsize(stack_a) > 3)
-		{
-			data.node = 0;
-			data.target = target_of_a(&stack_a, &stack_b, &data.node);
-			data.above_node = check_above1(stack_a, data.node);
-			data.above_target = check_above1(stack_b, data.target);
-			if (data.above_node && data.above_target)
-			{
-				while(stack_a->nbr != data.node && stack_b->nbr != data.target)
-				{
-					rr(&stack_a, &stack_b);
-				}
-			}
-			else if (!data.above_node && !data.above_target)
-			{
-				while(stack_a->nbr != data.node && stack_b->nbr != data.target)
-				{
-					rrr(&stack_a, &stack_b);
-				}
-			}
-			if (data.above_node)
-			{
-				while(stack_a->nbr != data.node)
-					ra(&stack_a);
-				
-			}
-			else
-			{
-				while(stack_a->nbr != data.node)
-					rra(&stack_a);
-			}
-			if (data.above_target)
-			{
-				while(stack_b->nbr != data.target)
-					rb(&stack_b);
-				
-			}
-			else
-			{
-				while(stack_b->nbr != data.target)
-					rrb(&stack_b);
-			}
-			pb(&stack_a, &stack_b);
-		}
+		turk_sort_a(&stack_a, &stack_b, &data);
 		sort_three(&stack_a);
-		while(ft_lstsize(stack_b) > 0)
-		{
-			data.node = 0;
-			data.target = target_of_b(&stack_b, &stack_a, &data.node);
-			data.above_node = check_above1(stack_b, data.node);
-			data.above_target = check_above1(stack_a, data.target);
-			if (data.above_node && data.above_target)
-			{
-				while(stack_a->nbr != data.target && stack_b->nbr != data.node)
-				{
-					rr(&stack_a, &stack_b);
-				}
-			}
-			else if(!data.above_node && !data.above_target)
-			{
-				while(stack_b->nbr != data.node && stack_a->nbr != data.target)
-					rrr(&stack_a, &stack_b);
-			}
-
-
-			if (data.above_node)
-			{
-				while(stack_b->nbr != data.node)
-					rb(&stack_b);
-				
-			}
-			else
-			{
-				while(stack_b->nbr != data.node)
-					rrb(&stack_b);
-			}
-
-			
-			if (data.above_target)
-			{
-				while(stack_a->nbr != data.target)
-				{
-					ra(&stack_a);
-				}
-				
-			}
-			else
-			{
-				while(stack_a->nbr != data.target)
-					rra(&stack_a);
-			}
-			pa(&stack_a, &stack_b);
-		}
+		turk_sort_b(&stack_a, &stack_b, &data);
 		check_min(&stack_a);
 	}
 }
