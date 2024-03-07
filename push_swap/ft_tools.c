@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 02:03:50 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/07 17:53:43 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/07 23:41:21 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int	ft_atoi(const char *s)
 			error_exit();
 		i++;
 	}
+	// printf("s[i]= %c\n", s[i]);
 	if (s[i] != '\0')
 		return(0);
 	return (r * sign);
