@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:28:38 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/07 23:43:06 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/08 01:26:18 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -293,7 +293,6 @@ int target_of_b(t_list **stack_b, t_list **stack_a, int *node)
 			index_a = index_of_smallest_one_a(stack_a);
 		}
 		index_a = get_index(stack_a, target);
-		// printf("node = %d | target = %d\n", current->nbr, target);
 		total_cost = check_above(stack_b, stack_a, index_b, index_a);
 		if (total_cost < min)
 		{
@@ -302,10 +301,8 @@ int target_of_b(t_list **stack_b, t_list **stack_a, int *node)
 			target_f = target;
 		}
 		index_b++;
-		// printf("cost of %d and %d = %d\n", current->nbr, target, total_cost);
 		current = current->next;
 	}
-	//  printf("node2 = %d | target2 = %d\n", *node, target_f);
 	return (target_f);;
 }
 
@@ -497,46 +494,7 @@ int	ft_strcmp(char *s1, char *s2)
 	return ((unsigned char) s1[i] - (unsigned char) s2[i]);
 }
 
-// void	ac_2(t_data *data, char *av)
-// {
-// 	int j;
 
-// 	j = 0;
-// 	if (ft_strcmp(av[i], "") == 0)
-// 	{
-// 		printf("Error\n");
-// 		exit(1);
-// 	}
-// 	data.split_arg = ft_split(data.av[i], " +");
-
-// 	while (data.split_arg[j])
-// 	{
-// 		data.arg = ft_atoi(data.split_arg[j]);
-// 		if (data.arg == 0 && data.split_arg[j][0] != '0')
-// 		{
-// 				printf("Error\n");
-// 				exit(1);
-// 		}
-// 		data.ar = ft_lstnew(data.arg);
-// 		ft_lst_add_back(&stack_a, data.ar);
-// 		j++;
-// 	}
-// }
-// void ac_not_2(t_data *data, char *av, t_list *ar)
-// {
-// 		data.arg = ft_atoi(av[i]);
-// 		if (data.arg == 0 && av[i][0] != '0')
-// 		{
-// 			printf("Error\n");
-// 			exit(1);
-// 		}
-// 		ar = ft_lstnew(data.arg);
-// 		ft_lst_add_back(&stack_a, ar);
-// }
-// void spliting_ac(t_list *data,char *av)
-// {
-	
-// }
 int ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
@@ -569,6 +527,14 @@ void spliting_ac(t_data *data,char **split_arg, t_list *ar, t_list **stack_a, ch
 		j++;
 	}
 }
+
+void both_above(t_list **stack_a, t_list **stack_b, t_data *data)
+{
+	while((*stack_a)->nbr != data->node && (*stack_b)->nbr != data->target)
+	{
+		rr(stack_a, stack_b);
+	}
+}
 void	turk_sort_a(t_list **stack_a, t_list **stack_b, t_data *data)
 {
 		while(ft_lstsize(*stack_a) > 3)
@@ -579,10 +545,11 @@ void	turk_sort_a(t_list **stack_a, t_list **stack_b, t_data *data)
 			data->above_target = check_above1(*stack_b, data->target);
 			if (data->above_node && data->above_target)
 			{
-				while((*stack_a)->nbr != data->node && (*stack_b)->nbr != data->target)
-				{
-					rr(stack_a, stack_b);
-				}
+				both_above(stack_a, stack_b, data);
+				// while((*stack_a)->nbr != data->node && (*stack_b)->nbr != data->target)
+				// {
+				// 	rr(stack_a, stack_b);
+				// }
 			}
 			else if (!data->above_node && !data->above_target)
 			{
@@ -595,7 +562,6 @@ void	turk_sort_a(t_list **stack_a, t_list **stack_b, t_data *data)
 			{
 				while((*stack_a)->nbr != data->node)
 					ra(stack_a);
-				
 			}
 			else
 			{
@@ -606,7 +572,6 @@ void	turk_sort_a(t_list **stack_a, t_list **stack_b, t_data *data)
 			{
 				while((*stack_b)->nbr != data->target)
 					rb(stack_b);
-				
 			}
 			else
 			{
