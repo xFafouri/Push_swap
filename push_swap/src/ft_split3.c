@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 13:31:08 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/06 02:07:14 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/10 02:42:52 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int check_sep (char str, char *sep)
 	return (0);
 }
 
-int 	count_words(char *str, char *sep)
+static int 	count_words(char *str, char *sep)
 {
 	int i = 0;
 	int count = 0;;

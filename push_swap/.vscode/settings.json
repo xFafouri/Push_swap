@@ -6,6 +6,7 @@
 		"random": "c",
 		"__functional_03": "c",
 		"functional": "c",
-		"__node_handle": "c"
+		"__node_handle": "c",
+		"checker_bonus.h": "c"
 	}
 }

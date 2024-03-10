@@ -6,63 +6,69 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 02:03:50 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/07 23:41:21 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/09 22:57:38 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker_bonus.h"
 
-t_list	*ft_lstnew(int nb)
+int	check_double(t_list **stack_a)
 {
-	t_list	*node;
-
-	node = malloc(sizeof(t_list));
-	if (node == NULL)
-		return (NULL);
-	node->nbr = nb;
-	node->next = NULL;
-	return(node);
-}
-
-t_list	*ft_lstlast(t_list *lst)
-{
-	if (lst == NULL)
-		return (NULL);
-	while (lst->next != NULL)
-		lst = lst->next;
-	return (lst);
-}
-void	ft_lst_add_back(t_list **lst, t_list *new)
-{
-	t_list *last;
-
-	if (lst == NULL)
-		return ;
-	if (*lst == NULL)
-	{
-		*lst = new;
-		return ;
-	}
-	last = ft_lstlast(*lst);
-	last->next = new;
+	int nb = 0;
+    t_list	*current;
+	t_list	*after;
+	
+	current = *stack_a;
+    while(current != NULL)
+    {
+        nb = current->nbr;
+        after = current;
+        while(after->next != NULL)
+        {
+            if (after->next->nbr == nb)
+				return(1);
+            after = after->next;
+        }
+        current = current->next;
+    }
+	return (0);
 }
 
 void error_exit()
 {
-	printf("Error\n");
+	write(2,"Error\n",6);
 	exit(1);
 }
 
-int	ft_atoi(const char *s)
+void check_sign(const char *s, int *i, int *sign)
 {
-	long sign;
-	long r;
+    if (s[*i] == '+' || s[*i] == '-')
+    {
+        if (s[*i] == '-')
+            *sign *= -1;
+        (*i)++;
+    }
+}
+
+void check_digit(const char *s, long *r, int *i, int *sign)
+{
+    while (s[*i] >= '0' && s[*i] <= '9')
+    {
+        *r = *r * 10 + (s[*i] - '0');
+        if ((*r * *sign) > 2147483647 || (*r * *sign) < -2147483648)
+            error_exit();
+        (*i)++;
+    }
+}
+long	ft_atoi(const char *s)
+{
+	int sign;
 	int i;
+	long r;
 
 	i = 0;
 	sign = 1;
 	r = 0;
-	
 	while(s[i])
 	{
 		if ((s[i] == '-' || s[i] == '+' ) && !(s[i + 1] >= 48 && s[i + 1] <= 57))
@@ -79,38 +85,9 @@ int	ft_atoi(const char *s)
 	i = 0;
 	while (s[i] >= '\t' && s[i] <= '\r' && s[i] != ' ')
 		i++;
-	if (s[i] == '+' || s[i] == '-')
-	{
-		if (s[i - 1] >= '0' && s[i - 1] <= '9')
-			error_exit();
-		if (s[i] == '-')
-		{
-			sign *= -1;
-		}
-		i++;
-	}
-	while (s[i] >= '0' && s[i] <= '9')
-	{
-		r = r * 10 + (s[i] - '0');
-		if ((r * sign) > 2147483647 || (r * sign) < -2147483648)
-			error_exit();
-		i++;
-	}
-	// printf("s[i]= %c\n", s[i]);
+	check_sign(s, &i, &sign);
+    check_digit(s, &r, &i, &sign);
 	if (s[i] != '\0')
-		return(0);
-	return (r * sign);
-}
-
-int	ft_lstsize(t_list *lst)
-{
-	int	counter;
-
-	counter = 0;
-	while (lst != NULL)
-	{
-		lst = lst->next;
-		++counter;
-	}
-	return (counter);
+        error_exit();
+    return (r * sign);
 }
