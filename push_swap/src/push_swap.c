@@ -6,28 +6,28 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:28:38 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/10 14:56:37 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/11 16:09:16 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <string.h>
 
-char	*ft_strchr(const char *s, int c)
-{
-	int	i;
+// char	*ft_strchr(const char *s, int c)
+// {
+// 	int	i;
 
-	i = 0;
-	while (s[i] != '\0')
-	{
-		if (s[i] == (char)c)
-			return ((char *)(s + i));
-		i++;
-	}
-	if (s[i] == (char)c)
-		return ((char *)(s + i));
-	return (NULL);
-}
+// 	i = 0;
+// 	while (s[i] != '\0')
+// 	{
+// 		if (s[i] == (char)c)
+// 			return ((char *)(s + i));
+// 		i++;
+// 	}
+// 	if (s[i] == (char)c)
+// 		return ((char *)(s + i));
+// 	return (NULL);
+// }
 
 int target_of_b(t_list **stack_b, t_list **stack_a, int *node)
 {
@@ -112,15 +112,13 @@ int	ft_strcmp(char *s1, char *s2)
 	return ((unsigned char) s1[i] - (unsigned char) s2[i]);
 }
 
-void	spliting_ac(t_data *data,char **split_arg, t_list *ar, t_list **stack_a, char *av)
+void	spliting_ac(t_data *data,char **split_arg, t_list *ar, t_list **stack_a)
 {
 	int j;
 	int i;
 	
 	i = 0;
 	j = 0;
-	if (ft_strchr(&av[i], '.') || ft_strchr(&av[i], ',') || ft_strchr(&av[i], '\t'))
-		error_exit();
 	while (split_arg[j])
 	{
 		data->arg = ft_atoi(split_arg[j]);
@@ -189,26 +187,26 @@ void turk_sort_b(t_list **stack_a, t_list **stack_b, t_data *data)
 			pa(stack_a, stack_b);
 		}
 }
-
+void	free_and_exit(t_list **stack_a)
+{
+	free_stack(stack_a);
+	exit(0);
+}
 void ft_start(t_list **stack_a, t_list **stack_b, t_data *data)
 {
 	if (check_double(stack_a))
-	{
-		free_stack(stack_a);
-		system("leaks push_swap");
-		error_exit();
-	}
+		free_and_exit(stack_a);
 	if (check_if_sorted(stack_a))
-		exit(0);
+		free_and_exit(stack_a);
 	if (ft_lstsize(*stack_a) == 2)
 	{
 		sort_two(stack_a);
-		exit(0);
+		free_and_exit(stack_a);
 	}
 	if (ft_lstsize(*stack_a) == 3)
 	{
 		sort_three(stack_a);
-		exit(0);
+		free_and_exit(stack_a);
 	}
 	else
 	{
@@ -262,11 +260,10 @@ int main(int ac, char **av)
 	while (i < ac)
 	{
     	split_arg = ft_split(av[i], ' ');
-		spliting_ac(&data, split_arg, ar, &stack_a, av[i]);
+		spliting_ac(&data, split_arg, ar, &stack_a);
 		free_split(split_arg, count_words(av[i], ' '));
 		i++;
 	}
-	system("leaks push_swap");
 	ft_start(&stack_a, &stack_b , &data);
-	// free_stack(&stack_a);
+	return(free_stack(&stack_a),free_stack(&stack_b));
 }

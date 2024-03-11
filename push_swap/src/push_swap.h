@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 01:52:34 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/10 02:41:14 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/11 16:09:25 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int 	check_if_sorted(t_list **stack_a);
 int 	check_double(t_list **stack_a);
 int 	smallest_one_a(t_list **stack_a);
 char	**ft_free(char **s, int n);
-void 	free_stack(t_list **stack);
+int 	free_stack(t_list **stack);
 int		count_words(char *s, char c);
 
 #endif
