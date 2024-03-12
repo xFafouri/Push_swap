@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 09:46:18 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/06 00:29:04 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:56:06 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,6 @@ int		count_words(char *str,char *sep)
 	}
 	return(count);
 }
-// int main ()
-// {
-// 	printf("%d\n", count_words("hamza fafouri!test,", "! ,"));
-// }
 int	len_until_sep(char *str, char *sep)
 {
 	int i = 0;

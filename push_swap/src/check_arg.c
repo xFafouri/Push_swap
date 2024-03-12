@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 02:34:13 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/11 14:35:45 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/11 16:11:22 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,7 @@ int	check_arg(char **av, int ac)
 {
 	int	i;
 	int	size;
-	int	j;
 
-	j = 0;
 	i = 1;
 	size = ft_strlen(av[i]);
 	if (size == 0)

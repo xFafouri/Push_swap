@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 01:21:45 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/09 21:42:33 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:58:20 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ int		valide_arg1(int size, int argc, char **argv);
 int		valide_arg2(char **av, int ac);
 int		check_arg(char **av, int ac);
 int 	check_double(t_list **stack_a);
-int		ft_strcmp(char *s1, char *s2)
-int 	check_if_sorted(t_list **stack_a)
+int		ft_strcmp(char *s1, char *s2);
+int 	check_if_sorted(t_list **stack_a);
 
 # include "get_next_line/get_next_line.h"
 # include <stdio.h>

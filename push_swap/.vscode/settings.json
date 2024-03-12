@@ -7,6 +7,7 @@
 		"__functional_03": "c",
 		"functional": "c",
 		"__node_handle": "c",
-		"checker_bonus.h": "c"
+		"checker_bonus.h": "c",
+		"get_next_line.h": "c"
 	}
 }
