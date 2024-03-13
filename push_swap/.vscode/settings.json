@@ -8,6 +8,11 @@
 		"functional": "c",
 		"__node_handle": "c",
 		"checker_bonus.h": "c",
-		"get_next_line.h": "c"
+		"get_next_line.h": "c",
+		"iterator": "c",
+		"algorithm": "c",
+		"chrono": "c",
+		"limits": "c",
+		"ratio": "c"
 	}
 }

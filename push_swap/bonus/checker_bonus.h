@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 01:21:45 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/12 15:58:20 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/13 00:20:45 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ int		check_arg(char **av, int ac);
 int 	check_double(t_list **stack_a);
 int		ft_strcmp(char *s1, char *s2);
 int 	check_if_sorted(t_list **stack_a);
+int		count_words(char *s, char c);
+int		free_stack(t_list **stack);
 
 # include "get_next_line/get_next_line.h"
 # include <stdio.h>

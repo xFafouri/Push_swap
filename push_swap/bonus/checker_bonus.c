@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 01:12:49 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/09 21:40:35 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/13 00:50:26 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,11 @@ int	ft_strcmp(char *s1, char *s2)
 
 
 
-void	spliting_ac(t_data *data,char **split_arg, t_list *ar, t_list **stack_a, char *av)
+void	spliting_ac(t_data *data,char **split_arg, t_list *ar, t_list **stack_a)
 {
 	int j;
-	int i;
 	
-	i = 0;
 	j = 0;
-	if (ft_strchr(&av[i], '.') || ft_strchr(&av[i], ',') || ft_strchr(&av[i], '\t'))
-		error_exit();
 	while (split_arg[j])
 	{
 		data->arg = ft_atoi(split_arg[j]);
@@ -40,6 +36,7 @@ void	spliting_ac(t_data *data,char **split_arg, t_list *ar, t_list **stack_a, ch
 		{
 			if (split_arg[j][0] == '-' || split_arg[j][0] == '+')
 				break ;
+			free_stack(stack_a);
 			error_exit();
 		}
 		ar = ft_lstnew(data->arg);
@@ -94,8 +91,14 @@ void 	check_moves(char *str, t_list **stack_a, t_list **stack_b)
 
 void ft_start(t_list **stack_a, t_list **stack_b)
 {
+	
 	char *str;
 
+	if (check_double(stack_a))
+	{
+		free_stack(stack_a);
+		error_exit();
+	}
 	str = get_next_line(0);
 	while (str != NULL)
 	{
@@ -103,36 +106,64 @@ void ft_start(t_list **stack_a, t_list **stack_b)
 		str = get_next_line(0);
 	}
 	if (check_if_sorted(stack_a) && (ft_lstsize(*stack_b) == 0))
+	{
 		write(1,"OK\n",3);
+		free_stack(stack_a);
+	}
 	else
+	{
 		write(1,"KO\n",3);
+		free_stack(stack_a);
+	}
+}
+
+void free_split(char **array, int size)
+{
+	int i = 0;
+    while (i < size) 
+	{
+        free(array[i]);
+		i++;
+    }
+    free(array);
+}
+int free_stack(t_list **stack)
+{
+
+	t_list *tmp;
+	while(*stack!= NULL)
+	{
+		tmp = *stack;
+		*stack = (*stack)->next;
+		free(tmp);
+	}
+	return(0);
 }
 
 int main(int ac , char **av)
 {
-	t_list	*stack_a = NULL;
-	t_list	*stack_b = NULL;
-	t_list	*ar = NULL;
+	t_list	*stack_a;
+	t_list	*stack_b;
+	t_list	*ar;
 	t_data	data;
 	int i;
 	char **split_arg;
 
 	data.node = 0;
+	ar = NULL;
 	data.target = 0;
 	data.above_node = 0;
 	data.above_target = 0;
 	i = 1;
-	if (ac == 1)
-		exit(0);
 	if (!check_arg(av, ac))
 		error_exit();
 	while (i < ac)
 	{
     	split_arg = ft_split(av[i], ' ');
-		spliting_ac(&data, split_arg, ar, &stack_a, av[i]);
+		spliting_ac(&data, split_arg, ar, &stack_a);
+		free_split(split_arg, count_words(av[i], ' '));
    		i++;
 	}
-	if (check_double(&stack_a))
-		error_exit();
 	ft_start(&stack_a, &stack_b);
+	return(free_stack(&stack_a),free_stack(&stack_b));
 }

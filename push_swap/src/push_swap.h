@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 01:52:34 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/11 16:09:25 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/13 01:55:06 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,17 @@ typedef	struct s_list
 	int	nbr;
 	struct s_list	*next;
 } t_list;
+
+typedef struct s_help
+{
+	int	index;
+	int total_cost;
+	int index_b;
+	long target;
+	int target_f;
+	long min;
+	
+} t_help;
 
 typedef	struct s_data
 {

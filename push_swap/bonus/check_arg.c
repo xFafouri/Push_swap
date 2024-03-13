@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 02:34:13 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/09 02:31:53 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/13 00:50:33 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,10 @@ int	check_arg(char **av, int ac)
 
 	j = 0;
 	i = 1;
+	if (ac == 1)
+		exit(0);
+	if (ft_strchr(av[i], '.') || ft_strchr(av[i], ',') || ft_strchr(av[i], '\t'))
+		error_exit();
 	size = ft_strlen(av[i]);
 	if (size == 0)
 		return (0);

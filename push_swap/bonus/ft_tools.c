@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 02:03:50 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/09 22:57:38 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/13 00:57:56 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void check_digit(const char *s, long *r, int *i, int *sign)
         (*i)++;
     }
 }
+
 long	ft_atoi(const char *s)
 {
 	int sign;

@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:28:38 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/11 16:09:16 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/13 02:29:14 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,37 +61,44 @@ int target_of_b(t_list **stack_b, t_list **stack_a, int *node)
 	}
 	return (target_f);;
 }
-
-int target_of_a(t_list **stack_a, t_list **stack_b, int *node)
+int ft_next(t_list **stack_a, t_list **stack_b, int *node, t_help *s)
 {
-	int	index = 0;
-	int total_cost = 0;
-	int index_b = 0;
-	long target = 0;
-	int target_f = 0;
-	long min = LONG_MAX;
-	
-	t_list *current = *stack_a;
+	t_list *current;
+	current = *stack_a;
 	while(current != NULL)
 	{
-		target = ft_check_target_a(current->nbr, stack_b);
-		if (target == LONG_MIN)
+		s->target = ft_check_target_a(current->nbr, stack_b);
+		if (s->target == LONG_MIN)
 		{
-			target = bigger_one_b(stack_b);
-			index_b = index_of_bigger_one_a(stack_b);
+			s->target = bigger_one_b(stack_b);
+			s->index_b = index_of_bigger_one_a(stack_b);
 		}
-		index_b = get_index(stack_b, target);
-		total_cost = check_above(stack_a, stack_b, index, index_b);
-		if (total_cost < min)
+		s->index_b = get_index(stack_b, s->target);
+		s->total_cost = check_above(stack_a, stack_b, s->index, s->index_b);
+		if (s->total_cost < s->min)
 		{
-			min = total_cost;
+			s->min = s->total_cost;
 			*node = current->nbr;
-			target_f = target;
+			s->target_f = s->target;
 		}
-		index++;
+		s->index++;
 		current = current->next;
 	}
-	return (target_f);;
+	return(s->target_f);
+}
+int target_of_a(t_list **stack_a, t_list **stack_b, int *node)
+{
+	t_help *s;
+	
+	s = malloc(sizeof(t_help));
+	s->index = 0;
+	s->total_cost = 0;
+	s->index_b = 0;
+	s->target = 0;
+	s->target_f = 0;
+	s->min = LONG_MAX;
+	s->target_f = ft_next(stack_a, stack_b, node, s);
+	return (s->target_f);;
 }
 
 
@@ -126,6 +133,7 @@ void	spliting_ac(t_data *data,char **split_arg, t_list *ar, t_list **stack_a)
 		{
 			if (split_arg[j][0] == '-' || split_arg[j][0] == '+')
 				break ;
+			free_stack(stack_a);
 			error_exit();
 		}
 		ar = ft_lstnew(data->arg);
@@ -136,6 +144,14 @@ void	spliting_ac(t_data *data,char **split_arg, t_list *ar, t_list **stack_a)
 
 void	turk_sort_a(t_list **stack_a, t_list **stack_b, t_data *data)
 {
+	// t_help *help;
+
+	// help->index = 0;
+	// help->total_cost = 0;
+	// help->index_b = 0;
+	// help->target = 0;
+	// help->target_f = 0;
+	// help->min = LONG_MAX;
 		while(ft_lstsize(*stack_a) > 3)
 		{
 			data->node = 0;
@@ -187,15 +203,22 @@ void turk_sort_b(t_list **stack_a, t_list **stack_b, t_data *data)
 			pa(stack_a, stack_b);
 		}
 }
+void	free_exit_error(t_list **stack_a)
+{
+	free_stack(stack_a);
+	write(2, "Error\n", 6);
+	exit(1);
+}
 void	free_and_exit(t_list **stack_a)
 {
 	free_stack(stack_a);
 	exit(0);
 }
+
 void ft_start(t_list **stack_a, t_list **stack_b, t_data *data)
 {
 	if (check_double(stack_a))
-		free_and_exit(stack_a);
+		free_exit_error(stack_a);
 	if (check_if_sorted(stack_a))
 		free_and_exit(stack_a);
 	if (ft_lstsize(*stack_a) == 2)
@@ -219,15 +242,6 @@ void ft_start(t_list **stack_a, t_list **stack_b, t_data *data)
 	}
 }
 
-// char	**ft_free(char **s,int n)
-// {
-// 	while (n > 0)
-// 	{
-// 		free(s[n--]);
-// 	}
-// 	free(s);
-// 	return (0);
-// }
 void free_split(char **array, int size)
 {
 	int i = 0;
@@ -241,20 +255,19 @@ void free_split(char **array, int size)
 
 int main(int ac, char **av)
 {
-	t_list	*stack_a = NULL;
-	t_list	*stack_b = NULL;
-	t_list	*ar = NULL;
+	t_list	*stack_a;
+	t_list	*stack_b;
+	t_list	*ar;
 	t_data	data;
-	int i;
-	char **split_arg;
+	int		i;
+	char	**split_arg;
 
 	data.node = 0;
+	ar = NULL;
 	data.target = 0;
 	data.above_node = 0;
 	data.above_target = 0;
 	i = 1;
-	if (ac == 1)
-		exit(0);
 	if (!check_arg(av, ac))
 		error_exit();
 	while (i < ac)

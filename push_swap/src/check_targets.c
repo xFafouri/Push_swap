@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 02:54:46 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/08 16:05:31 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/13 02:15:25 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,15 @@
 
 long ft_check_target_a(int nb,t_list **stack_b)
 {
-	int index = 0;
-	long best_b = LONG_MIN;
-	long target = 0;
+	int index;
+	long best_b;
+	long target;
+	t_list *current;
 
-	t_list *current = (*stack_b);
+	index = 0;
+	best_b = LONG_MIN;
+	target = 0;
+	current = (*stack_b);
 	while(current != NULL)
 	{
 		if (current->nbr < nb && best_b < current->nbr)
@@ -37,14 +41,17 @@ long ft_check_target_b(int nb,t_list **stack_a)
 	int index = 0;
 	long best_a = LONG_MAX;
 	long target = 0;
-
-	t_list *current = (*stack_a);
+	t_list *current;
+	
+	index = 0;
+	best_a = LONG_MAX;
+	target = 0;
+	current = (*stack_a);
 	while(current != NULL)
 	{
 		if (current->nbr > nb && best_a > current->nbr)
 		{
 			best_a = current->nbr;
-
 		}
 		index++;
 		current = current->next;
