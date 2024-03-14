@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 01:12:49 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/14 04:38:51 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/14 17:45:42 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,10 @@ void 	check_moves(char *str, t_list **stack_a, t_list **stack_b)
 		rrr(stack_a, stack_b);
 	else
 	{
-		// get_next_line(-42);
+		if ((ft_lstsize(*stack_b) != 0))
+			free_stack(stack_a);
+		if ((ft_lstsize(*stack_b) != 0))
+			free_stack(stack_b);
 		system("leaks checker");
 		error_exit();
 	}
