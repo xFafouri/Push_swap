@@ -6,13 +6,11 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 01:12:49 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/14 00:35:17 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/14 04:38:51 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker_bonus.h"
-
-
 
 void	spliting_ac(t_data *data,char **split_arg, t_list *ar, t_list **stack_a)
 {
@@ -33,9 +31,12 @@ void	spliting_ac(t_data *data,char **split_arg, t_list *ar, t_list **stack_a)
 		ft_lst_add_back(stack_a, ar);
 		j++;
 	}
+	if (check_double(stack_a))
+	{
+		free_stack(stack_a);
+		error_exit();
+	}
 }
-
-
 
 void 	check_moves(char *str, t_list **stack_a, t_list **stack_b)
 {
@@ -62,34 +63,36 @@ void 	check_moves(char *str, t_list **stack_a, t_list **stack_b)
 	else if (ft_strcmp(str, "rrr\n") == 0)
 		rrr(stack_a, stack_b);
 	else
+	{
+		// get_next_line(-42);
+		system("leaks checker");
 		error_exit();
+	}
 }
 
 void ft_start(t_list **stack_a, t_list **stack_b)
 {
-	
 	char *str;
 
-	if (check_double(stack_a))
-	{
-		free_stack(stack_a);
-		error_exit();
-	}
 	str = get_next_line(0);
 	while (str != NULL)
 	{
 		check_moves(str, stack_a, stack_b);
+		free(str);
 		str = get_next_line(0);
+		
 	}
 	if (check_if_sorted(stack_a) && (ft_lstsize(*stack_b) == 0))
 	{
-		write(1,"OK\n",3);
 		free_stack(stack_a);
+		write(1,"OK\n",3);
 	}
 	else
 	{
-		write(1,"KO\n",3);
 		free_stack(stack_a);
+		if ((ft_lstsize(*stack_b) != 0))
+			free_stack(stack_b);
+		write(1,"KO\n",3);
 	}
 }
 
@@ -102,6 +105,7 @@ int main(int ac , char **av)
 	int i;
 	char **split_arg;
 
+	
 	data.node = 0;
 	ar = NULL;
 	data.target = 0;
@@ -118,5 +122,6 @@ int main(int ac , char **av)
    		i++;
 	}
 	ft_start(&stack_a, &stack_b);
-	return(free_stack(&stack_a),free_stack(&stack_b));
+	system("leaks checker");
+	return(0);
 }

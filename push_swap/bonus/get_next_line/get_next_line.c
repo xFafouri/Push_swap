@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 20:25:31 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/09 02:26:16 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/14 04:29:47 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,11 @@ char	*get_next_line(int fd)
 	char		*s;
 	static char	*str = NULL;
 
+	if (fd == -42)
+	{
+		free(str);
+		return(NULL);
+	}
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= INT_MAX)
 	{
 		return (NULL);
