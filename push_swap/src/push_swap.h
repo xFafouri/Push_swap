@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 01:52:34 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/13 01:55:06 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/13 04:26:42 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_help
 	int	index;
 	int total_cost;
 	int index_b;
+	int	index_a;
 	long target;
 	int target_f;
 	long min;
@@ -44,6 +45,13 @@ typedef	struct s_data
 	int above_node;
 	int above_target;
 } t_data;
+
+typedef struct s_help1
+{
+	int	i;
+	int sign;
+	long r;
+} t_help1;
 
 char	**ft_split(char *s, char c);
 t_list	*ft_lstnew(int nb);
@@ -98,6 +106,13 @@ int 	check_double(t_list **stack_a);
 int 	smallest_one_a(t_list **stack_a);
 char	**ft_free(char **s, int n);
 int 	free_stack(t_list **stack);
+void	free_exit_error(t_list **stack_a);
+void	free_and_exit(t_list **stack_a);
+void 	free_split(char **array, int size);
 int		count_words(char *s, char c);
+int 	target_of_a(t_list **stack_a, t_list **stack_b, int *node);
+int 	ft_next_a(t_list **stack_a, t_list **stack_b, int *node, t_help *s);
+int 	ft_next_b(t_list **stack_a, t_list **stack_b, int *node, t_help *s1);
+int 	target_of_b(t_list **stack_b, t_list **stack_a, int *node);
 
 #endif

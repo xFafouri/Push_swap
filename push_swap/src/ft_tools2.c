@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:11:51 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/11 16:09:08 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/13 03:18:53 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,6 @@ void ft_lstclear(t_list **lst)
 		*lst = (*lst)->next;
 		free(tmp);
 	}
-}
-
-int free_stack(t_list **stack)
-{
-
-	t_list *tmp;
-	while(*stack!= NULL)
-	{
-		tmp = *stack;
-		*stack = (*stack)->next;
-		free(tmp);
-	}
-	return(0);
 }
 
 t_list	*ft_lstnew(int nb)

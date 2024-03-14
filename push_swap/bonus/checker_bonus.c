@@ -6,21 +6,11 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 01:12:49 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/13 00:50:26 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/14 00:35:17 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker_bonus.h"
-
-int	ft_strcmp(char *s1, char *s2)
-{
-	size_t	i;
-
-	i = 0;
-	while (s1[i] == s2[i] && s1[i] && s2[i])
-		i++;
-	return ((unsigned char) s1[i] - (unsigned char) s2[i]);
-}
 
 
 
@@ -44,22 +34,8 @@ void	spliting_ac(t_data *data,char **split_arg, t_list *ar, t_list **stack_a)
 		j++;
 	}
 }
-int check_if_sorted(t_list **stack_a)
-{
-	int i = 1;
-	t_list *current = (*stack_a);
-	while(current->next != NULL)
-	{
-		if (current->nbr < current->next->nbr)
-		{
-			i++;
-		}
-		current = current->next;
-	}
-	if (ft_lstsize(*stack_a) == i)
-		return (1);
-	return(0);
-}
+
+
 
 void 	check_moves(char *str, t_list **stack_a, t_list **stack_b)
 {
@@ -115,29 +91,6 @@ void ft_start(t_list **stack_a, t_list **stack_b)
 		write(1,"KO\n",3);
 		free_stack(stack_a);
 	}
-}
-
-void free_split(char **array, int size)
-{
-	int i = 0;
-    while (i < size) 
-	{
-        free(array[i]);
-		i++;
-    }
-    free(array);
-}
-int free_stack(t_list **stack)
-{
-
-	t_list *tmp;
-	while(*stack!= NULL)
-	{
-		tmp = *stack;
-		*stack = (*stack)->next;
-		free(tmp);
-	}
-	return(0);
 }
 
 int main(int ac , char **av)

@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 02:03:50 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/13 00:54:35 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/13 03:54:33 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void check_sign(const char *s, int *i, int *sign)
 {
+	while (s[*i] >= '\t' && s[*i] <= '\r' && s[*i] != ' ')
+		(*i)++;
     if (s[*i] == '+' || s[*i] == '-')
     {
         if (s[*i] == '-')
@@ -39,36 +41,36 @@ void error_exit()
 	exit(1);
 }
 
+void ft_non_digit(char c)
+{
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		error_exit();
+}
 long	ft_atoi(const char *s)
 {
-	int sign;
-	int i;
-	long r;
+	t_help1 help1;
 
-	i = 0;
-	sign = 1;
-	r = 0;
-	while(s[i])
+	help1.i = 0;
+	help1.sign = 1;
+	help1.r = 0;
+	while(s[help1.i])
 	{
-		if ((s[i] == '-' || s[i] == '+' ) && !(s[i + 1] >= 48 && s[i + 1] <= 57))
+		if ((s[help1.i] == '-' || s[help1.i] == '+' ) && !(s[help1.i + 1] >= 48 && s[help1.i + 1] <= 57))
 			error_exit();
-		if ((s[i] == '-' || s[i] == '+' ) && (s[i - 1] >= 48 && s[i - 1] <= 57))
+		if ((s[help1.i] == '-' || s[help1.i] == '+' ) && (s[help1.i - 1] >= 48 && s[help1.i - 1] <= 57))
 			error_exit();
-		i++;
+		help1.i++;
 	}
-	i = 0;
-	while(s[i])
+	help1.i = 0;
+	while(s[help1.i])
 	{
-		if ((s[i] >= 'a' && s[i] <= 'z') || (s[i] >= 'A' && s[i] <= 'Z'))
-			error_exit();
-		i++;
+		ft_non_digit(s[help1.i]);
+		help1.i++;
 	}
-	i = 0;
-	while (s[i] >= '\t' && s[i] <= '\r' && s[i] != ' ')
-		i++;
-	check_sign(s, &i, &sign);
-    check_digit(s, &r, &i, &sign);
-	if (s[i] != '\0')
+	help1.i = 0;
+	check_sign(s, &help1.i, &help1.sign);
+    check_digit(s, &help1.r, &help1.i, &help1.sign);
+	if (s[help1.i] != '\0')
 		return(0);
-	return(r * sign);
+	return(help1.r * help1.sign);
 }
