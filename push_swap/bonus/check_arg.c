@@ -57,9 +57,7 @@ int	check_arg(char **av, int ac)
 {
 	int	i;
 	int	size;
-	int	j;
 
-	j = 0;
 	i = 1;
 	if (ac == 1)
 		exit(0);

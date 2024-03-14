@@ -68,7 +68,8 @@ void 	check_moves(char *str, t_list **stack_a, t_list **stack_b)
 			free_stack(stack_a);
 		if ((ft_lstsize(*stack_b) != 0))
 			free_stack(stack_b);
-		system("leaks checker");
+		free(str);
+		get_next_line(-42);
 		error_exit();
 	}
 }
@@ -108,6 +109,9 @@ int main(int ac , char **av)
 	int i;
 	char **split_arg;
 
+	stack_a = malloc(sizeof(t_list));
+	stack_b = malloc(sizeof(t_list));
+	
 	
 	data.node = 0;
 	ar = NULL;
@@ -125,6 +129,5 @@ int main(int ac , char **av)
    		i++;
 	}
 	ft_start(&stack_a, &stack_b);
-	system("leaks checker");
 	return(0);
 }
