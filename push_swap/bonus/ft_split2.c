@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 20:52:04 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/09 02:36:13 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/15 04:19:15 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 char	*ft_strdup(const char *s)
 {
-	int	i;
+	int		i;
 	char	*cpy;
-	
+
 	i = 0;
-	cpy = (char *) malloc(sizeof(char) * (ft_strlen(s) + 1));
+	cpy = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
 	if (!cpy)
 		return (NULL);
 	while (s[i])
@@ -28,11 +28,11 @@ char	*ft_strdup(const char *s)
 	}
 	cpy[i] = '\0';
 	return (cpy);
-	
 }
+
 char	*ft_substr(char const *s, int start, int len)
 {
-	char		*sub;
+	char	*sub;
 	int		i;
 
 	if (s == NULL)
@@ -40,7 +40,7 @@ char	*ft_substr(char const *s, int start, int len)
 	i = 0;
 	if (start >= ft_strlen(s))
 		return (ft_strdup(""));
-	if (len > ft_strlen (s) - start)
+	if (len > ft_strlen(s) - start)
 		len = ft_strlen(s) - start;
 	sub = (char *)malloc(sizeof(char) * (len + 1));
 	if (!sub)
@@ -53,22 +53,7 @@ char	*ft_substr(char const *s, int start, int len)
 	sub[len] = '\0';
 	return ((char *)sub);
 }
-int		count_words(char *s, char c)
-{
-	int i;
 
-	i = 0;
-	while (*s)
-	{
-		while (*s == c)
-			s++;
-		if (*s)
-			i++;
-		while (*s != c && *s)
-			s++;
-	}
-	return (i);
-}
 char	**ft_free(char **s, int n)
 {
 	while (n > 0)
@@ -78,6 +63,7 @@ char	**ft_free(char **s, int n)
 	free(s);
 	return (0);
 }
+
 static char	**ft_help(char **tab, const char *s, char c)
 {
 	int	i;

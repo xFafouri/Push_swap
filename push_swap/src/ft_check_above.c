@@ -1,44 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_above.c                                      :+:      :+:    :+:   */
+/*   ft_check_above.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:52:28 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/08 15:57:06 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/15 03:53:26 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int ft_max(int a, int b)
+int	ft_max(int a, int b)
 {
 	if (a > b)
 		return (a);
 	return (b);
 }
 
-int 	check_above1(t_list *stack, int node)
+int	check_above1(t_list *stack, int node)
 {
-	int size = ft_lstsize(stack);
-	int i = 0;
-	while(stack != NULL)
+	int	size;
+	int	i;
+
+	size = ft_lstsize(stack);
+	i = 0;
+	while (stack != NULL)
 	{
 		if (stack->nbr == node)
-			break;
+			break ;
 		i++;
 		stack = stack->next;
 	}
-	return(i <= size / 2);
+	return (i <= size / 2);
 }
 
-int check_above(t_list **stack_a ,t_list **stack_b, int index_a, int index_b)
+int	check_above(t_list **stack_a, t_list **stack_b, int index_a, int index_b)
 {
-	int size_a;
-	int size_b; 
-	int cost;
-	
+	int	size_a;
+	int	size_b;
+	int	cost;
+
 	size_b = ft_lstsize(*stack_b);
 	size_a = ft_lstsize(*stack_a);
 	cost = 0;

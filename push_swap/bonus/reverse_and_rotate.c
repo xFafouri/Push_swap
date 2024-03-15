@@ -14,29 +14,30 @@
 
 void	reverse_rotate(t_list **stack)
 {
-	t_list *last_node;
+	t_list	*last_node;
+	t_list	*second_last;
 
 	last_node = ft_lstlast(*stack);
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
-	return ;
-
+		return ;
 	last_node->next = *stack;
 	*stack = last_node;
-	t_list *second_last = *stack;
-	while(second_last->next != last_node)
+	second_last = *stack;
+	while (second_last->next != last_node)
 	{
 		second_last = second_last->next;
 	}
 	second_last->next = NULL;
 }
 
-void rotate(t_list **stack)
+void	rotate(t_list **stack)
 {
-	t_list *last_node;
+	t_list	*last_node;
+
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 		return ;
 	last_node = ft_lstlast(*stack);
-    last_node->next = *stack; 
-    *stack = (*stack)->next; 
-    last_node->next->next = NULL;
+	last_node->next = *stack;
+	*stack = (*stack)->next;
+	last_node->next->next = NULL;
 }

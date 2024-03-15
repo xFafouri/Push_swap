@@ -12,15 +12,17 @@
 
 #include "push_swap.h"
 
-void free_split(char **array, int size)
+void	free_split(char **array, int size)
 {
-	int i = 0;
-    while (i < size) 
+	int	i;
+
+	i = 0;
+	while (i < size)
 	{
-        free(array[i]);
+		free(array[i]);
 		i++;
-    }
-    free(array);
+	}
+	free(array);
 }
 
 void	free_exit_error(t_list **stack_a)
@@ -36,15 +38,15 @@ void	free_and_exit(t_list **stack_a)
 	exit(0);
 }
 
-int free_stack(t_list **stack)
+int	free_stack(t_list **stack)
 {
+	t_list	*tmp;
 
-	t_list *tmp;
-	while(*stack!= NULL)
+	while (*stack != NULL)
 	{
 		tmp = *stack;
 		*stack = (*stack)->next;
 		free(tmp);
 	}
-	return(0);
+	return (0);
 }

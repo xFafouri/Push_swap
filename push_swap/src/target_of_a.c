@@ -6,17 +6,18 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 03:07:04 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/13 03:35:11 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/15 03:59:07 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int ft_next_a(t_list **stack_a, t_list **stack_b, int *node, t_help *s)
+int	ft_next_a(t_list **stack_a, t_list **stack_b, int *node, t_help *s)
 {
-	t_list *current;
+	t_list	*current;
+
 	current = *stack_a;
-	while(current != NULL)
+	while (current != NULL)
 	{
 		s->target = ft_check_target_a(current->nbr, stack_b);
 		if (s->target == LONG_MIN)
@@ -35,10 +36,10 @@ int ft_next_a(t_list **stack_a, t_list **stack_b, int *node, t_help *s)
 		s->index++;
 		current = current->next;
 	}
-	return(s->target_f);
+	return (s->target_f);
 }
 
-int target_of_a(t_list **stack_a, t_list **stack_b, int *node)
+int	target_of_a(t_list **stack_a, t_list **stack_b, int *node)
 {
 	t_help	s;
 
@@ -49,5 +50,5 @@ int target_of_a(t_list **stack_a, t_list **stack_b, int *node)
 	s.target_f = 0;
 	s.min = LONG_MAX;
 	s.target_f = ft_next_a(stack_a, stack_b, node, &s);
-	return (s.target_f);;
+	return (s.target_f);
 }

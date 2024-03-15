@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:11:51 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/14 00:23:38 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/15 04:22:31 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,24 @@
 
 int	check_double(t_list **stack_a)
 {
-	int nb = 0;
-    t_list	*current;
+	int		nb;
+	t_list	*current;
 	t_list	*after;
-	
+
+	nb = 0;
 	current = *stack_a;
-    while(current != NULL)
-    {
-        nb = current->nbr;
-        after = current;
-        while(after->next != NULL)
-        {
-            if (after->next->nbr == nb)
-				return(1);
-            after = after->next;
-        }
-        current = current->next;
-    }
+	while (current != NULL)
+	{
+		nb = current->nbr;
+		after = current;
+		while (after->next != NULL)
+		{
+			if (after->next->nbr == nb)
+				return (1);
+			after = after->next;
+		}
+		current = current->next;
+	}
 	return (0);
 }
 
@@ -43,8 +44,9 @@ t_list	*ft_lstnew(int nb)
 		return (NULL);
 	node->nbr = nb;
 	node->next = NULL;
-	return(node);
+	return (node);
 }
+
 t_list	*ft_lstlast(t_list *lst)
 {
 	if (lst == NULL)
@@ -53,9 +55,10 @@ t_list	*ft_lstlast(t_list *lst)
 		lst = lst->next;
 	return (lst);
 }
+
 void	ft_lst_add_back(t_list **lst, t_list *new)
 {
-	t_list *last;
+	t_list	*last;
 
 	if (lst == NULL)
 		return ;
@@ -67,6 +70,7 @@ void	ft_lst_add_back(t_list **lst, t_list *new)
 	last = ft_lstlast(*lst);
 	last->next = new;
 }
+
 int	ft_lstsize(t_list *lst)
 {
 	int	counter;

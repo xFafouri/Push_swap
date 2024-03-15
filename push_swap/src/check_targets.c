@@ -12,18 +12,18 @@
 
 #include "push_swap.h"
 
-long ft_check_target_a(int nb,t_list **stack_b)
+long	ft_check_target_a(int nb, t_list **stack_b)
 {
-	int index;
-	long best_b;
-	long target;
-	t_list *current;
+	int		index;
+	long	best_b;
+	long	target;
+	t_list	*current;
 
 	index = 0;
 	best_b = LONG_MIN;
 	target = 0;
 	current = (*stack_b);
-	while(current != NULL)
+	while (current != NULL)
 	{
 		if (current->nbr < nb && best_b < current->nbr)
 		{
@@ -36,18 +36,21 @@ long ft_check_target_a(int nb,t_list **stack_b)
 	return (target);
 }
 
-long ft_check_target_b(int nb,t_list **stack_a)
+long	ft_check_target_b(int nb, t_list **stack_a)
 {
-	int index = 0;
-	long best_a = LONG_MAX;
-	long target = 0;
-	t_list *current;
-	
+	int		index;
+	long	best_a;
+	long	target;
+	t_list	*current;
+
+	index = 0;
+	best_a = LONG_MAX;
+	target = 0;
 	index = 0;
 	best_a = LONG_MAX;
 	target = 0;
 	current = (*stack_a);
-	while(current != NULL)
+	while (current != NULL)
 	{
 		if (current->nbr > nb && best_a > current->nbr)
 		{

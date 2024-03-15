@@ -33,7 +33,8 @@ int	valide_arg1(int size, int ac, char **av)
 	int	i;
 
 	i = 1;
-	if (ft_strchr(av[i], '.') || ft_strchr(av[i], ',') || ft_strchr(av[i], '\t'))
+	if (ft_strchr(av[i], '.') || ft_strchr(av[i], ',') || ft_strchr(av[i],
+			'\t'))
 		error_exit();
 	while (size != 0 && i < ac)
 	{
@@ -51,7 +52,6 @@ int	valide_arg2(char **av, int ac)
 	int	j;
 	int	count;
 	int	size;
-
 
 	i = 1;
 	while (av[i] && i < ac)

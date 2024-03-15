@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 18:26:26 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/09 02:25:31 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/15 04:22:13 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static char	*chiyata(char *str)
 {
 	char	*s;
 	int		j;
-	int	i;
+	int		i;
 
 	i = 0;
 	j = 0;

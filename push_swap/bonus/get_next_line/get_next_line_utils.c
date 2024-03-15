@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 17:06:52 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/09 02:26:03 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/15 04:21:56 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ char	*ft_strchr(const char *s, int c)
 
 char	*ft_strjoin(char *s1, char *s2)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*str;
 
 	i = -1;

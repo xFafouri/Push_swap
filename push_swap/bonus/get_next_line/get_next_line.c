@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 20:25:31 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/14 04:29:47 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/15 04:21:35 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static char	*chiyata(char *str)
 {
 	char	*s;
 	int		j;
-	int	i;
+	int		i;
 
 	i = 0;
 	j = 0;
@@ -107,7 +107,7 @@ char	*get_next_line(int fd)
 	if (fd == -42)
 	{
 		free(str);
-		return(NULL);
+		return (NULL);
 	}
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= INT_MAX)
 	{
