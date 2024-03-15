@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 02:03:50 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/13 03:54:33 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/15 03:31:59 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ long	ft_atoi(const char *s)
 	{
 		if ((s[help1.i] == '-' || s[help1.i] == '+' ) && !(s[help1.i + 1] >= 48 && s[help1.i + 1] <= 57))
 			error_exit();
-		if ((s[help1.i] == '-' || s[help1.i] == '+' ) && (s[help1.i - 1] >= 48 && s[help1.i - 1] <= 57))
+		if (help1.i > 1 && (s[help1.i] == '-' || s[help1.i] == '+' ) && (s[help1.i - 1] >= 48 && s[help1.i - 1] <= 57))
 			error_exit();
 		help1.i++;
 	}

@@ -1,6 +1,6 @@
 NAME = push_swap
 Name2 = checker
-CC = gcc  #-fsanitize=address -g3
+CC = gcc  -fsanitize=address -g3
 CFLAGS = -Wall -Wextra -Werror
 SOURCE = ./src/target_of_a.c ./src/free.c ./src/target_of_b.c  ./src/ft_split2.c ./src/ft_tools2.c ./src/ft_check_above.c ./src/sort_two_three.c ./src/check_targets.c\
 		./src/check_stacks.c ./src/get_index.c ./src/ft_tools.c ./src/check_arg.c ./src/to_a.c ./src/to_b.c\

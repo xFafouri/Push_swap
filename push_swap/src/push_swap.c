@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:28:38 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/13 03:21:33 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/15 03:32:21 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ int	ft_strcmp(char *s1, char *s2)
 void	spliting_ac(t_data *data,char **split_arg, t_list *ar, t_list **stack_a)
 {
 	int j;
-	int i;
 	
-	i = 0;
 	j = 0;
 	while (split_arg[j])
 	{
