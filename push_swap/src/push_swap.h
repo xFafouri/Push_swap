@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 01:52:34 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/15 03:45:33 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/15 22:50:24 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,6 @@ typedef struct s_data
 	int				above_node;
 	int				above_target;
 }					t_data;
-
-typedef struct s_help1
-{
-	int				i;
-	int				sign;
-	long			r;
-}					t_help1;
 
 char				**ft_split(char *s, char c);
 t_list				*ft_lstnew(int nb);

@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 02:34:13 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/15 05:10:05 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/15 22:57:24 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ int	valide_arg2(char **av, int ac)
 		{
 			if (av[i][j] == ' ')
 				count++;
+			if ((av[i][j] >= 'a' && av[i][j] <= 'z') || (av[i][j] >= 'A'
+				&& av[i][j] <= 'Z'))
+				error_exit();
 			j++;
 		}
 		if (count == size)

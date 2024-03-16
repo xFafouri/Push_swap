@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 02:03:50 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/15 03:53:53 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/15 22:55:54 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,39 +41,30 @@ void	error_exit(void)
 	exit(1);
 }
 
-void	ft_non_digit(char c)
-{
-	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-		error_exit();
-}
-
 long	ft_atoi(const char *s)
 {
-	t_help1	help1;
+	int		i;
+	int		sign;
+	long	r;
 
-	help1.i = 0;
-	help1.sign = 1;
-	help1.r = 0;
-	while (s[help1.i])
+	i = 0;
+	sign = 1;
+	i = 0;
+	sign = 1;
+	r = 0;
+	while (s[i])
 	{
-		if ((s[help1.i] == '-' || s[help1.i] == '+') && !(s[help1.i + 1] >= 48
-				&& s[help1.i + 1] <= 57))
+		if ((s[i] == '-' || s[i] == '+') && !(s[i + 1] >= 48 && s[i + 1] <= 57))
 			error_exit();
-		if (help1.i > 1 && (s[help1.i] == '-' || s[help1.i] == '+')
-			&& (s[help1.i - 1] >= 48 && s[help1.i - 1] <= 57))
+		if (i > 0 && (s[i] == '-' || s[i] == '+') && (s[i - 1] >= 48 && s[i
+					- 1] <= 57))
 			error_exit();
-		help1.i++;
+		i++;
 	}
-	help1.i = 0;
-	while (s[help1.i])
-	{
-		ft_non_digit(s[help1.i]);
-		help1.i++;
-	}
-	help1.i = 0;
-	check_sign(s, &help1.i, &help1.sign);
-	check_digit(s, &help1.r, &help1.i, &help1.sign);
-	if (s[help1.i] != '\0')
+	i = 0;
+	check_sign(s, &i, &sign);
+	check_digit(s, &r, &i, &sign);
+	if (s[i] != '\0')
 		return (0);
-	return (help1.r * help1.sign);
+	return (r * sign);
 }
