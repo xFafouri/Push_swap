@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 01:21:45 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/15 04:18:58 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/18 02:34:09 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void				reverse_rotate(t_list **stack);
 void				rotate(t_list **stack);
 void				ft_lst_add_back(t_list **lst, t_list *new);
 void				error_exit(void);
-long				ft_atoi(const char *s);
+long				ft_atoi(const char *s, t_list **stack_a);
 int					ft_lstsize(t_list *lst);
 int					valide_arg1(int size, int argc, char **argv);
 int					valide_arg2(char **av, int ac);
@@ -69,5 +69,6 @@ int					count_words(char *s, char c);
 int					free_stack(t_list **stack);
 void				free_split(char **array, int size);
 int					ft_strcmp(char *s1, char *s2);
+void				free_exit_error(t_list **stack_a);
 
 #endif

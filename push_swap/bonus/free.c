@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 03:14:01 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/14 00:27:33 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/18 02:33:58 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@ void	free_split(char **array, int size)
 		i++;
 	}
 	free(array);
+}
+
+void	free_exit_error(t_list **stack_a)
+{
+	free_stack(stack_a);
+	write(2, "Error\n", 6);
+	exit(1);
 }
 
 int	free_stack(t_list **stack)

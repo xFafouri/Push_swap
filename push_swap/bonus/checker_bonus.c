@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 01:12:49 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/18 01:47:38 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/18 02:34:30 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	spliting_ac(char **split_arg, t_list *ar, t_list **stack_a)
 	j = 0;
 	while (split_arg[j])
 	{
-		arg = ft_atoi(split_arg[j]);
+		arg = ft_atoi(split_arg[j], stack_a);
 		while (arg == 0 && split_arg[j][0] != '0')
 		{
 			if (split_arg[j][0] == '-' || split_arg[j][0] == '+')
