@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 02:34:13 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/15 22:57:24 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/18 02:09:50 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,30 @@ int	valide_arg2(char **av, int ac)
 	return (1);
 }
 
+int	valid_arg3(char **av, int ac)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (av[i] && i < ac)
+	{
+		j = 0;
+		while (av[i][j])
+		{
+			if ((av[i][j] == '-' || av[i][j] == '+') && !(av[i][j + 1] >= 48
+					&& av[i][j + 1] <= 57))
+				return (0);
+			if (j > 0 && (av[i][j] == '-' || av[i][j] == '+') && (av[i][j
+					- 1] >= 48 && av[i][j - 1] <= 57))
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
 int	check_arg(char **av, int ac)
 {
 	int	i;
@@ -73,6 +97,8 @@ int	check_arg(char **av, int ac)
 	if (!valide_arg1(size, ac, av))
 		return (0);
 	if (!valide_arg2(av, ac))
+		return (0);
+	if (!valid_arg3(av, ac))
 		return (0);
 	return (1);
 }

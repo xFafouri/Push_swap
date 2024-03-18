@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 01:52:34 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/15 22:50:24 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/18 02:30:59 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_list				*ft_lstlast(t_list *lst);
 
 void				ft_lst_add_back(t_list **lst, t_list *new);
 int					ft_strlen(const char *s);
-long				ft_atoi(const char *s);
+long				ft_atoi(const char *s, t_list **stack_a);
 int					ft_lstsize(t_list *lst);
 void				ra(t_list **stack_a);
 void				pb(t_list **stack_a, t_list **stack_b);
