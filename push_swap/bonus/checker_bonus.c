@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 01:12:49 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/18 02:34:30 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/21 00:48:46 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,8 @@ int	main(int ac, char **av)
 	int		i;
 	char	**split_arg;
 
+	stack_a = NULL;
+	stack_b = NULL;
 	ar = NULL;
 	i = 1;
 	if (!check_arg(av, ac))

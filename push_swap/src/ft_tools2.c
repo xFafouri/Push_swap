@@ -6,23 +6,11 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 17:11:51 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/15 03:52:07 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/18 07:32:49 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	ft_lstclear(t_list **lst)
-{
-	t_list	*tmp;
-
-	while (*lst != NULL)
-	{
-		tmp = *lst;
-		*lst = (*lst)->next;
-		free(tmp);
-	}
-}
 
 t_list	*ft_lstnew(int nb)
 {

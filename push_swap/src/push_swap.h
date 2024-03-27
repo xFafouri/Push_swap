@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 01:52:34 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/18 02:30:59 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/21 00:35:18 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void				both_not_above2(t_list **stack_a, t_list **stack_b,
 void				node_above2(t_list **stack_b, t_data *data);
 void				node_not_above2(t_list **stack_b, t_data *data);
 void				target_above2(t_list **stack_a, t_data *data);
-int					valide_arg1(int size, int argc, char **argv);
+int					valide_arg1(int argc, char **argv);
 int					valide_arg2(char **av, int ac);
 int					check_arg(char **av, int ac);
 int					bigger_one_b(t_list **stack_b);

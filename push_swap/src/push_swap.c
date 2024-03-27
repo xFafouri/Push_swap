@@ -6,7 +6,7 @@
 /*   By: hfafouri <hfafouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:28:38 by hfafouri          #+#    #+#             */
-/*   Updated: 2024/03/18 02:29:42 by hfafouri         ###   ########.fr       */
+/*   Updated: 2024/03/22 03:57:43 by hfafouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ int	main(int ac, char **av)
 	t_list	*stack_a;
 	t_list	*stack_b;
 
+	stack_a = NULL;
+	stack_b = NULL;
 	if (!check_arg(av, ac))
 		error_exit();
 	mini_main(ac, av, &stack_a, &stack_b);
